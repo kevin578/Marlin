@@ -463,7 +463,7 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = false; // set to true to invert the l
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
 #define INVERT_X_DIR false
 #define INVERT_Y_DIR false
-#define INVERT_Z_DIR false
+#define INVERT_Z_DIR true
 
 // @section extruder
 
@@ -681,20 +681,28 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = false; // set to true to invert the l
 
 #define HOMING_FEEDRATE {50*60, 50*60, 4*60, 0}  // set the homing speeds (mm/min)
 
-// default settings
+// Computing steps/mm
+// for XY = (motor steps/rev * microstepping) / (pulley teeth * tooth pitch)
+// for  Z = (motor steps/rev * microstepping) / (screw lead) <-- lead = linear advance per turn
+// for  E = (motor steps/rev * microstepping) / (gear ratio * drive circumference) <-- circumference = filament advance per drive turn
+//  make sure ratios use floating point to avoid integer division!
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {(200*16)/(17*2.0), (200*16)/(17*2.0), (200*8)/8.0, (200*4)/((7*30.23)/51)}
+#define DEFAULT_MAX_FEEDRATE          {5000/60, 5000/60, 1500/60, 4000/60}    // (mm/sec)
+#define DEFAULT_MAX_ACCELERATION      {5000, 2500, 1000, 250}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for skeinforge 40+, for older versions raise them a lot.
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {80,80,4000,500}  // default steps per unit for Ultimaker
-#define DEFAULT_MAX_FEEDRATE          {300, 300, 5, 25}    // (mm/sec)
-#define DEFAULT_MAX_ACCELERATION      {3000,3000,100,10000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for Skeinforge 40+, for older versions raise them a lot.
-
-#define DEFAULT_ACCELERATION          3000    // X, Y, Z and E acceleration in mm/s^2 for printing moves
-#define DEFAULT_RETRACT_ACCELERATION  3000    // E acceleration in mm/s^2 for retracts
-#define DEFAULT_TRAVEL_ACCELERATION   3000    // X, Y, Z acceleration in mm/s^2 for travel (non printing) moves
+#define DEFAULT_ACCELERATION          10000   // X, Y, Z and E max acceleration in mm/s^2 for printing moves
+#define DEFAULT_RETRACT_ACCELERATION  10000   // X, Y, Z and E max acceleration in mm/s^2 for retracts
+#define DEFAULT_TRAVEL_ACCELERATION   10000    // X, Y, Z acceleration in mm/s^2 for travel (non printing) moves
+// Offset of the extruders (uncomment if using more than one and relying on firmware to position when changing).
+// The offset has to be X=0, Y=0 for the extruder 0 hotend (default extruder).
+// For the other hotends it is their distance from the extruder 0 hotend.
+// #define EXTRUDER_OFFSET_X {0.0, 20.00} // (in mm) for each extruder, offset of the hotend on the X axis
+// #define EXTRUDER_OFFSET_Y {0.0, 5.00}  // (in mm) for each extruder, offset of the hotend on the Y axis
 
 // The speed change that does not require acceleration (i.e. the software might assume it can be done instantaneously)
-#define DEFAULT_XYJERK                20.0    // (mm/sec)
-#define DEFAULT_ZJERK                 0.4     // (mm/sec)
-#define DEFAULT_EJERK                 5.0    // (mm/sec)
+#define DEFAULT_XYJERK                (30.0*60)    // (mm/sec)
+#define DEFAULT_ZJERK                 (1.0*60)     // (mm/sec)
+#define DEFAULT_EJERK                 (5.0*60)     // (mm/sec)
 
 
 //=============================================================================
