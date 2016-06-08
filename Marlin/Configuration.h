@@ -494,8 +494,8 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = false; // set to true to invert the l
 #define Y_MIN_POS -62
 #define Z_MIN_POS 0
 #define X_MAX_POS 62
-#define Y_MAX_POS 124
-#define Z_MAX_POS 230.6
+#define Y_MAX_POS 66
+#define Z_MAX_POS 114.8
 
 //===========================================================================
 //========================= Filament Runout Sensor ==========================
@@ -686,9 +686,9 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = false; // set to true to invert the l
 // for  Z = (motor steps/rev * microstepping) / (screw lead) <-- lead = linear advance per turn
 // for  E = (motor steps/rev * microstepping) / (gear ratio * drive circumference) <-- circumference = filament advance per drive turn
 //  make sure ratios use floating point to avoid integer division!
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {(200*16)/(17*2.0), (200*16)/(17*2.0), (200*8)/8.0, (200*4)/((7*30.23)/51)}
-#define DEFAULT_MAX_FEEDRATE          {5000/60, 5000/60, 3000/60, 4000/60}    // (mm/sec)
-#define DEFAULT_MAX_ACCELERATION      {5000, 2500, 1000, 250}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for skeinforge 40+, for older versions raise them a lot.
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {(200*16)/(17*2.0), (200*16)/(17*2.0), 400.00, 95.00}
+#define DEFAULT_MAX_FEEDRATE          {5000/60, 5000/60, 1500/60, 4000/60}    // (mm/sec)
+#define DEFAULT_MAX_ACCELERATION      {2500, 2500, 1000, 250}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for skeinforge 40+, for older versions raise them a lot.
 
 #define DEFAULT_ACCELERATION          10000   // X, Y, Z and E max acceleration in mm/s^2 for printing moves
 #define DEFAULT_RETRACT_ACCELERATION  10000   // X, Y, Z and E max acceleration in mm/s^2 for retracts
@@ -757,9 +757,9 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = false; // set to true to invert the l
 // @section temperature
 
 // Preheat Constants
-#define PLA_PREHEAT_HOTEND_TEMP 180
-#define PLA_PREHEAT_HPB_TEMP 70
-#define PLA_PREHEAT_FAN_SPEED 0   // Insert Value between 0 and 255
+#define PLA_PREHEAT_HOTEND_TEMP 200
+#define PLA_PREHEAT_HPB_TEMP 0
+#define PLA_PREHEAT_FAN_SPEED 255   // Insert Value between 0 and 255
 
 #define ABS_PREHEAT_HOTEND_TEMP 240
 #define ABS_PREHEAT_HPB_TEMP 110
