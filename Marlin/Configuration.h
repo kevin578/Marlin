@@ -186,7 +186,7 @@
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
-#define TEMP_SENSOR_BED 1
+#define TEMP_SENSOR_BED 0
 
 // This makes temp sensor 1 a redundant sensor for sensor 0. If the temperatures difference between these sensors is to high the print will be aborted.
 //#define TEMP_SENSOR_1_AS_REDUNDANT
@@ -495,7 +495,7 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = false; // set to true to invert the l
 #define Z_MIN_POS 0
 #define X_MAX_POS 62
 #define Y_MAX_POS 66
-#define Z_MAX_POS 114.8
+#define Z_MAX_POS 113.0
 
 //===========================================================================
 //========================= Filament Runout Sensor ==========================
@@ -688,10 +688,10 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = false; // set to true to invert the l
 //  make sure ratios use floating point to avoid integer division!
 #define DEFAULT_AXIS_STEPS_PER_UNIT   {(200*16)/(17*2.0), (200*16)/(17*2.0), 400.00, 95.00}
 #define DEFAULT_MAX_FEEDRATE          {5000/60, 5000/60, 1500/60, 4000/60}    // (mm/sec)
-#define DEFAULT_MAX_ACCELERATION      {2500, 2500, 1000, 250}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for skeinforge 40+, for older versions raise them a lot.
 
-#define DEFAULT_ACCELERATION          10000   // X, Y, Z and E max acceleration in mm/s^2 for printing moves
-#define DEFAULT_RETRACT_ACCELERATION  10000   // X, Y, Z and E max acceleration in mm/s^2 for retracts
+#define DEFAULT_MAX_ACCELERATION {180,180,10,200}   // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for skeinforge 40+, for older versions raise them a lot.
+#define DEFAULT_ACCELERATION          60   // X, Y, Z and E max acceleration in mm/s^2 for printing moves
+#define DEFAULT_RETRACT_ACCELERATION  60   // X, Y, Z and E max acceleration in mm/s^2 for retracts
 #define DEFAULT_TRAVEL_ACCELERATION   10000    // X, Y, Z acceleration in mm/s^2 for travel (non printing) moves
 // Offset of the extruders (uncomment if using more than one and relying on firmware to position when changing).
 // The offset has to be X=0, Y=0 for the extruder 0 hotend (default extruder).
